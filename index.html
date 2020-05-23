@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Камень-ножницы-бумага игра</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+</head>
+<body>
+    <main>
+        <h1 class="headline">
+            Камень-ножницы-бумага!
+        </h1>
+        <p class="rules">
+            Игра Камень-ножницы-бумага очень простая и уже покорила сердца миллионов геймеров по всему миру! <br>
+            Правила: тебе надо выбрать своё оружие - камень, ножницы или бумагу. Камень бьёт ножницы, 
+            ножницы режут бумагу, бумага заворачивает камень. Всего в игре 3 раунда, кто выиграет минимум 2 из них - тот и чемпион, герой и победитель. 
+        </p>
+        <fieldset>
+            <legend>Ну что, готов сразиться? Тогда выбирай оружие:</legend>
+            <div class="options">
+                <label for="rock" class="rock"><img src="imgs/rock.png" alt="Камень" class="weapons-img rock-img"></label>
+                <input type="radio" name="weapon" value="rock" id="rock" class="input__rock">
+
+                <label for="scissors" class="scissors"><img src="imgs/scissors.png" alt="Ножницы" class="weapons-img scissors-img"></label>
+                <input type="radio" name="weapon" value="scissors" id="scissors" class="input__scissors">
+                
+                <label for="paper" class="paper"><img src="imgs/paper.png" alt="Бумага" class="weapons-img paper-img"></label>
+                <input type="radio" name="weapon" value="paper" id="paper" class="input__paper">
+                
+            </div>
+            <div class="button-field">
+                <button class="button" type="submit">В бой!</button>
+            </div>
+        </fieldset>
+
+    </main>
+    
+
+    <script src="script.js"></script>
+</body>
+</html>
