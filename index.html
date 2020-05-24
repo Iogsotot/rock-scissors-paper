@@ -14,30 +14,28 @@
         </h1>
         <p class="rules">
             Игра Камень-ножницы-бумага очень простая и уже покорила сердца миллионов геймеров по всему миру! <br>
-            Правила: тебе надо выбрать своё оружие - камень, ножницы или бумагу. Камень бьёт ножницы, 
+            <strong>Правила:</strong> тебе надо выбрать своё оружие - камень, ножницы или бумагу. Камень бьёт ножницы, 
             ножницы режут бумагу, бумага заворачивает камень. Всего в игре 3 раунда, кто выиграет минимум 2 из них - тот и чемпион, герой и победитель. 
         </p>
         <fieldset>
             <legend>Ну что, готов сразиться? Тогда выбирай оружие:</legend>
             <div class="options">
                 <label for="rock" class="rock"><img src="imgs/rock.png" alt="Камень" class="weapons-img rock-img"></label>
-                <input type="radio" name="weapon" value="rock" id="rock" class="input__rock">
+                <input type="radio" name="weapon" value="0" id="rock" class="input__rock">
 
                 <label for="scissors" class="scissors"><img src="imgs/scissors.png" alt="Ножницы" class="weapons-img scissors-img"></label>
-                <input type="radio" name="weapon" value="scissors" id="scissors" class="input__scissors">
+                <input type="radio" name="weapon" value="2" id="scissors" class="input__scissors">
                 
                 <label for="paper" class="paper"><img src="imgs/paper.png" alt="Бумага" class="weapons-img paper-img"></label>
-                <input type="radio" name="weapon" value="paper" id="paper" class="input__paper">
+                <input type="radio" name="weapon" value="1" id="paper" class="input__paper">
                 
             </div>
             <div class="button-field">
-                <button class="button" type="submit">В бой!</button>
+                <button class="button start-game" type="submit">В бой!</button>
             </div>
         </fieldset>
-
     </main>
     
-
     <script src="script.js"></script>
 </body>
 </html>

@@ -82,6 +82,14 @@ html {
     outline: 1px solid black;
   }
 
+  input:disabled {
+    visibility: hidden;
+  }
+
+  button:disabled {
+    display: none;
+  }
+
   .button {
       display: block;
       margin: auto;
