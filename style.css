@@ -1,5 +1,5 @@
 html {
-    font-family: "Arial", sans-serif;
+    font-family: "SF Pro", "Helvetica", "Helvetica Neue", "Helvetica CY", "Nimbus Sans L", "Arial", sans-serif;
   }
   
   .options {
@@ -13,9 +13,15 @@ html {
 
   main {
       display: grid;
+      grid-template-columns: 1fr;
       justify-items: center;
+
       max-width: 800px;
       margin: 10px auto 10px;
+  }
+
+  fieldset {
+    margin: 0;
   }
 
   .rock {
@@ -99,4 +105,51 @@ html {
       max-width: 200px;
       max-height: 200px;
   }
+
+  .round-result {
+    display: grid;
+    grid-gap: 0;
+    grid-template-columns: minmax(max-content, 314px) minmax(max-content, 314px);
+    grid-template-rows:  repeat(7, auto);
+    justify-items: center;
+  
+    background: linear-gradient(0.25turn, #59d2e7, #f8faf7, #f6673c);
+  }
+
+  .round-1, .round-2, .round-3 {
+    display: block;
+    
+    grid-column-start: 1;
+    grid-column-end: 3;  
+    
+    width: 100%;
+    width: -moz-available;          /* WebKit-based browsers will ignore this. */
+    width: -webkit-fill-available;  /* Mozilla-based browsers will ignore this. */
+    width: fill-available;
+  
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.089);
+  }
+  
+  .round-result h2, .round-result h3 {
+    color: rgb(83, 83, 83);
+
+    margin: 0 auto;
+    padding: 3px 15px;
+  }
+
+  .round-result h3 {
+    /* font-style: italic; */
+    font-size: 14px;
+    font-weight: lighter;
+  }
+
+  .round-result p {
+    margin: 5px;
+    font-weight: 600;
+  }
+
+  /* .hidden {
+    display: none;
+  } */
   
