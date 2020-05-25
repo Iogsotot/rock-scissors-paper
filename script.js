@@ -64,6 +64,7 @@ function stopGame() {
         for(let i = 0; i < 3; i++) {
             iiChoiceMessages[i].textContent = "";
             userChoiceMessages[i].textContent = "";
+            roundResultHeaders[i].textContent = i+1 + " раунд:";
         }
     }
 }
