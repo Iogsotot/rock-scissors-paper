@@ -11,6 +11,10 @@ let buttonField = document.querySelector(".button-field");
 
 let fieldset = document.querySelector("fieldset");
 
+let roundResultTable = document.querySelector(".round-result");
+let roundResultHeaders = document.querySelectorAll(".round-header");
+let iiChoiceMessages = document.querySelectorAll(".ii-result-round-1, .ii-result-round-2, .ii-result-round-3");
+let userChoiceMessages = document.querySelectorAll(".player-result-round-1, .player-result-round-2, .player-result-round-3");
 // генерируем ответ компьютера
 function getRandomWeapon(min, max) {
     min = Math.ceil(min);
@@ -54,14 +58,22 @@ function stopGame() {
         startGameBtn.disabled = false;
         resetGameBtn.disabled = true;
         scoreMessage.remove();
+
+        
+        roundResultTable.classList.add("hidden");
+        for(let i = 0; i < 3; i++) {
+            iiChoiceMessages[i].textContent = "";
+            userChoiceMessages[i].textContent = "";
+        }
     }
 }
 
 function userWin() {
     userCount++;
-    console.log("Игрок выиграл " + roundCount + " раунд!");
-    // добавить элемент p "Игрок выиграл раунд!"
-    
+    let i = roundCount - 1;
+    roundResultHeaders[i].textContent = "Игрок выиграл " + roundCount + " раунд!";
+    // console.log("Игрок выиграл " + roundCount + " раунд!");
+      
     if (roundCount >= 3) {
         stopGame();
     }
@@ -69,8 +81,9 @@ function userWin() {
 
 function userLose() {
     iiCount++;
-    console.log("Игрок проиграл " + roundCount + " раунд");
-    // добавить элемент p "Игрок проиграл раунд"
+    // console.log("Игрок проиграл " + roundCount + " раунд");
+    let i = roundCount - 1;
+    roundResultHeaders[i].textContent = "Компьютер выиграл " + roundCount + " раунд!";
     
     if (roundCount >= 3) {
         stopGame();
@@ -78,8 +91,9 @@ function userLose() {
 }
 
 function draw() {
-    console.log("Ничья");
-    // добавить элемент p "Ничья"
+    // console.log("Ничья");
+    let i = roundCount - 1;
+    roundResultHeaders[i].textContent = roundCount + " раунд: ничья";
     if (roundCount >= 3) {
         stopGame();
     }
@@ -87,10 +101,22 @@ function draw() {
 
 function checkRound() {
     roundCount++;
+    roundResultTable.classList.remove("hidden");
     let iiChoice = getRandomWeapon(0, 2);
+    let i = roundCount - 1;
+    iiChoiceMessages[i].textContent = (iiChoice == 0) ? "Камень" :
+        (iiChoice == 1) ? "Бумага" : 
+        (iiChoice == 2) ? "Ножницы" :
+        "Фигня какая-то";
+
     console.log("Искуственный интеллект выбрал: " + iiChoice); // проверка, после тестов удалить
     let userChoice = document.querySelector("input:checked").value;
     console.log("Пользователь выбрал: " + userChoice);
+
+    userChoiceMessages[i].textContent = (userChoice == 0) ? "Камень" :
+    (userChoice == 1) ? "Бумага" : 
+    (userChoice == 2) ? "Ножницы" :
+    "Фигня какая-то";
 
     if (iiChoice == 0) {
         if (userChoice == 1) {
