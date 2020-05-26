@@ -3,11 +3,13 @@ let paper = document.querySelector(".input__paper");
 let scissors = document.querySelector(".input__scissors");
 
 let startGameBtn = document.querySelector(".start-game");
-let playerName = "человек";
 let playerCount = 0;
 let aiCount = 0;
 let roundCount = 0;
 let buttonField = document.querySelector(".button-field");
+
+let playerResultHeader = document.querySelector(".player-result-header");
+
 
 const ROCK = 0;
 const PAPER = 1;
@@ -76,7 +78,7 @@ function stopGame() {
 function playerWin() {
     playerCount++;
     let i = roundCount - 1;
-    roundResultHeaders[i].textContent = "Игрок выиграл " + roundCount + " раунд!";
+    roundResultHeaders[i].textContent = playerName + " - победитель " + roundCount + " раунда!";
     // console.log("Игрок выиграл " + roundCount + " раунд!");
       
     if (roundCount >= 3) {
@@ -88,7 +90,7 @@ function playerLose() {
     aiCount++;
     // console.log("Игрок проиграл " + roundCount + " раунд");
     let i = roundCount - 1;
-    roundResultHeaders[i].textContent = "Компьютер выиграл " + roundCount + " раунд!";
+    roundResultHeaders[i].textContent = "Компьютер - победитель " + roundCount + " раунда!";
     
     if (roundCount >= 3) {
         stopGame();
@@ -104,8 +106,20 @@ function draw() {
     }
 }
 
+let playerNameInput = document.querySelector(".player-name-input");
+let playerName = "человек";
+function setPlayerName() {
+    let name;
+    if (playerNameInput.value !== "") {
+        name = playerNameInput.value
+    } else {name = playerName}
+    return name;
+}
+
 function checkRound() {
     roundCount++;
+    playerName = setPlayerName();
+    playerResultHeader.textContent = playerName;
     roundResultTable.classList.remove("hidden");
     let aiChoice = getRandomWeapon(0, 2);
     let i = roundCount - 1;
