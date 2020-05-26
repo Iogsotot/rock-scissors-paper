@@ -17,7 +17,11 @@
             <strong>Правила:</strong> тебе надо выбрать своё оружие - камень, ножницы или бумагу. Камень бьёт ножницы, 
             ножницы режут бумагу, бумага заворачивает камень. Всего в игре 3 раунда, кто выиграет минимум 2 из них - тот и чемпион, герой и победитель. 
         </p>
-        
+        <fieldset class="player-name-field">
+            <label for="player-name" class="player-name-label">Назови своё имя:
+                <input type="text" name="player-name" id="player-name" class="player-name-input" value="">
+            </label>
+        </fieldset>
         <fieldset>
             <legend>Ну что, готов сразиться? Тогда выбирай оружие:</legend>
             <div class="options">
@@ -25,7 +29,7 @@
                 <input type="radio" name="weapon" value="0" id="rock" class="input__rock">
 
                 <label for="scissors" class="scissors"><img src="imgs/scissors.png" alt="Ножницы" class="weapons-img scissors-img"></label>
-                <input type="radio" name="weapon" value="2" id="scissors" class="input__scissors">
+                <input type="radio" name="weapon" value="2" id="scissors" class="input__scissors" checked>
                 
                 <label for="paper" class="paper"><img src="imgs/paper.png" alt="Бумага" class="weapons-img paper-img"></label>
                 <input type="radio" name="weapon" value="1" id="paper" class="input__paper">
