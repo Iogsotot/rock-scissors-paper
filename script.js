@@ -3,18 +3,22 @@ let paper = document.querySelector(".input__paper");
 let scissors = document.querySelector(".input__scissors");
 
 let startGameBtn = document.querySelector(".start-game");
-let userName = "человек";
-let userCount = 0;
-let iiCount = 0;
+let playerName = "человек";
+let playerCount = 0;
+let aiCount = 0;
 let roundCount = 0;
 let buttonField = document.querySelector(".button-field");
+
+const ROCK = 0;
+const PAPER = 1;
+const SCISSORS = 2;
 
 let fieldset = document.querySelector("fieldset");
 
 let roundResultTable = document.querySelector(".round-result");
 let roundResultHeaders = document.querySelectorAll(".round-header");
-let iiChoiceMessages = document.querySelectorAll(".ii-result-round-1, .ii-result-round-2, .ii-result-round-3");
-let userChoiceMessages = document.querySelectorAll(".player-result-round-1, .player-result-round-2, .player-result-round-3");
+let aiChoiceMessages = document.querySelectorAll(".ai-result-round-1, .ai-result-round-2, .ai-result-round-3");
+let playerChoiceMessages = document.querySelectorAll(".player-result-round-1, .player-result-round-2, .player-result-round-3");
 // генерируем ответ компьютера
 function getRandomWeapon(min, max) {
     min = Math.ceil(min);
@@ -31,15 +35,15 @@ function stopGame() {
 
     fieldset.insertAdjacentHTML("beforeend", "<p class='score'></p>");
     let scoreMessage = document.querySelector(".score");
-    console.log("ИИ: " + iiCount + "; " + "Игрок: " + userCount);
+    console.log("ИИ: " + aiCount + "; " + "Игрок: " + playerCount);
 
-    if(userCount > iiCount) {
-        scoreMessage.textContent = "Победитель игры: " + userName;
+    if(playerCount > aiCount) {
+        scoreMessage.textContent = "Победитель игры: " + playerName;
     }
-    if(userCount < iiCount) {
+    if(playerCount < aiCount) {
         scoreMessage.textContent = "Компьютер победил тебя, ха-ха-ха!";
     }
-    else if(userCount == iiCount) {
+    else if(playerCount == aiCount) {
         scoreMessage.textContent = "Сегодня нет победителей, но нет и побеждённых";
     }
 
@@ -49,8 +53,8 @@ function stopGame() {
     resetGameBtn.addEventListener("click", resetGame);
 
     function resetGame() {
-        userCount = 0;
-        iiCount = 0;
+        playerCount = 0;
+        aiCount = 0;
         roundCount = 0;
         rock.disabled = false;
         paper.disabled = false;
@@ -62,15 +66,15 @@ function stopGame() {
         
         roundResultTable.classList.add("hidden");
         for(let i = 0; i < 3; i++) {
-            iiChoiceMessages[i].textContent = "";
-            userChoiceMessages[i].textContent = "";
+            aiChoiceMessages[i].textContent = "";
+            playerChoiceMessages[i].textContent = "";
             roundResultHeaders[i].textContent = i+1 + " раунд:";
         }
     }
 }
 
-function userWin() {
-    userCount++;
+function playerWin() {
+    playerCount++;
     let i = roundCount - 1;
     roundResultHeaders[i].textContent = "Игрок выиграл " + roundCount + " раунд!";
     // console.log("Игрок выиграл " + roundCount + " раунд!");
@@ -80,8 +84,8 @@ function userWin() {
     }
 }
 
-function userLose() {
-    iiCount++;
+function playerLose() {
+    aiCount++;
     // console.log("Игрок проиграл " + roundCount + " раунд");
     let i = roundCount - 1;
     roundResultHeaders[i].textContent = "Компьютер выиграл " + roundCount + " раунд!";
@@ -103,62 +107,62 @@ function draw() {
 function checkRound() {
     roundCount++;
     roundResultTable.classList.remove("hidden");
-    let iiChoice = getRandomWeapon(0, 2);
+    let aiChoice = getRandomWeapon(0, 2);
     let i = roundCount - 1;
-    iiChoiceMessages[i].textContent = (iiChoice == 0) ? "Камень" :
-        (iiChoice == 1) ? "Бумага" : 
-        (iiChoice == 2) ? "Ножницы" :
+    aiChoiceMessages[i].textContent = (aiChoice == ROCK) ? "Камень" :
+        (aiChoice == PAPER) ? "Бумага" : 
+        (aiChoice == SCISSORS) ? "Ножницы" :
         "Фигня какая-то";
 
-    console.log("Искуственный интеллект выбрал: " + iiChoice); // проверка, после тестов удалить
-    let userChoice = document.querySelector("input:checked").value;
-    console.log("Пользователь выбрал: " + userChoice);
+    console.log("Искуственный интеллект выбрал: " + aiChoice); // проверка, после тестов удалить
+    let playerChoice = document.querySelector("input:checked").value;
+    console.log("Пользователь выбрал: " + playerChoice);
 
-    userChoiceMessages[i].textContent = (userChoice == 0) ? "Камень" :
-    (userChoice == 1) ? "Бумага" : 
-    (userChoice == 2) ? "Ножницы" :
+    playerChoiceMessages[i].textContent = (playerChoice == ROCK) ? "Камень" :
+    (playerChoice == PAPER) ? "Бумага" : 
+    (playerChoice == SCISSORS) ? "Ножницы" :
     "Фигня какая-то";
 
-    if (iiChoice == 0) {
-        if (userChoice == 1) {
+    if (aiChoice == ROCK) {
+        if (playerChoice == PAPER) {
             // запустить анимацию "бумага заворачивает камень"
-            userWin();
+            playerWin();
         }
-        if (userChoice == 2) {
+        if (playerChoice == SCISSORS) {
             // запустить анимацию "камень тупит ножницы"
-            userLose();
+            playerLose();
         }
-        else if (userChoice == 0) {
+        else if (playerChoice == ROCK) {
             draw();
             // console.log("два камня стукнулись");
         }
     }
 
-    if (iiChoice == 1) {
-        if (userChoice == 0) {
+    if (aiChoice == PAPER) {
+        if (playerChoice == ROCK) {
             // запустить анимацию "бумага заворачивает камень"
-            userLose();
+            playerLose();
         }
-        if (userChoice == 2) {
+        if (playerChoice == SCISSORS) {
             // запустить анимацию "ножницы режут бумагу"
-            userWin();
+            playerWin();
         }
-        else if (userChoice == 1) {
+        else if (playerChoice == PAPER) {
             draw();
             // console.log("два листа бумаги поколыхались");
         }
     }
 
-    if (iiChoice == 2) {
-        if (userChoice == 0) {
+    if (aiChoice == SCISSORS) {
+        if (playerChoice == ROCK) {
             // запустить анимацию "камень тупит ножницы"
-            userWin();
+            playerWin();
         }
-        if (userChoice == 1) {
+        if (playerChoice == PAPER) {
             // запустить анимацию "ножницы режут бумагу"
-            userLose();
+            playerLose();
         }
-        else if (userChoice == 2) {
+        else if (playerChoice == SCISSORS) {
             draw();
             // console.log("две пары ножниц звякнули"); 
         }
