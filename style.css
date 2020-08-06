@@ -1,5 +1,6 @@
 html {
     font-family: "SF Pro", "Helvetica", "Helvetica Neue", "Helvetica CY", "Nimbus Sans L", "Arial", sans-serif;
+    background: radial-gradient(closest-side, #e2f5e8b6, #f5fdf0a9, #edfac8b9);
   }
   
   .options {
@@ -35,6 +36,8 @@ html {
   }
 
   .player-name-input {
+    background-color: transparent;
+
     border: none;
     border-bottom: 1px solid #999;
 
